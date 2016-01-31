@@ -1,0 +1,1006 @@
+Ruby Quick Reference		
+- d:\sandbox\ruby\ruby-reference.txt
+................................................................
+
+COURSERA Ruby on Rails Intro - 
+	- https://www.coursera.org/learn/ruby-on-rails-intro/home/welcome
+	
+-----------------------
+RUBY References / Online Guides
+-----------------------
+- Great Class and INstance VAriables, Inheritance
+	http://www.railstips.org/blog/archives/2006/11/18/class-and-instance-variables-in-ruby/
+- Nice tutorial site with changeable / executable rubY
+	https://rubymonk.com/learning/books/4-ruby-primer-ascent/chapters/45-more-classes/lessons/113-class-variables
+- Dog Class example
+	http://rubylearning.com/satishtalim/writing_our_own_class_in_ruby.html
+- Class and Other Variables
+	Instance Method                             work with an "instance" of a class
+	Class Method                    is not available outside the class (not avail in an instance of the class)
+class Item
+  def self.show
+    puts "Class method show invoked"
+  end 
+end
+
+- https://rubymonk.com/learning/books/4-ruby-primer-ascent/chapters/45-more-classes/lessons/113-class-variables
+
+- Ruby provides four types of variables:
+	Local Variables: Local variables are the variables that are defined in a method. Local variables are not available outside the method. You will see more details about method in subsequent chapter. Local variables begin with a lowercase letter or _.
+	Instance Variables: Instance variables are available across methods for any particular instance or object. That means that instance variables change from object to object. Instance variables are preceded by the at sign (@) followed by the variable name.
+	Class Variables: Class variables are available across different objects. A class variable belongs to the class and is a characteristic of a class. They are preceded by the sign @@ and are followed by the variable name.
+	Global Variables: Class variables are not available across classes. If you want to have a single variable, which is available across classes, you need to define a global variable. The global variables are always preceded by the dollar sign ($).
+
+---------------------------
+RUBY SANDBOX / Tutorial code
+---------------------------
+watcher.rb
+	http://rosettacode.org/wiki/Read_a_configuration_file#Ruby
+D:\Sandbox\Ruby
+
+
+
+====================================================================
+RUBY ON RAILS
+====================================================================
+Configure Editor for Ruby
+	RubyMine	IDE	$30 	
+	Sublime Text	\Preference\Settings ==> Global and User based
+			\View\Layout\ 2 columns :  alt-shift-2
+			Key Bindings
+			SEARCH : Find in File- \	ctrl-shift-F
+			Goto Anything - Ctrl-P 		search and show context
+			Builders :  Ctrl-B		Run the current File 
+			PLUGINS				https://Packagecontrol.io
+			
+
+
+====================================================================
+COURSERA COURSE - JAN 2016
+			
+------------------------------
+RUBY - INTRO
+------------------------------
+Coursera GIT repo
+- https://github.com/jhu-ep-coursera/fullstack-course1-module3
+			testing git
+- https://github.com/jhu-ep-coursera/fullstack-course1-module2/tree/master/Assignments/Lesson01-Assignment01-Case-Statement
+
+
+
+
+
+General 
+------------
+Hashes = maps
+Has Classes, etc. : OBJ oriented
+Unit testing - 
+Dynamic - not static typed
+everything is an object. 
+no primitive types.
+everything is evaluated		(ie.  3 is an obj and gets evaluated )
+
+Syntax
+------------
+Indent : 2 spaces
+# comment
+varaibles : snake_case   (and must start Lower)
+constants : UPPER		  Must start with Upper case
+classes   : CamelCase
+multiple; statements should use; semicolons	# use this sometimes.
+
+IRB - interactive Ruby
+	irb puts "hello world"
+	return value is "nil"  
+
+3.times { puts "hello world" }
+	3 is object,  times is a method
+
+put   => puts a string to the console with newline
+	 p  "puts" the internal representation of an object.
+
+print	=> print without a new lien
+
+Flow Control
+------------------
+if a==3 
+	puts 3
+elseif a==4 
+	puts 4
+else 
+	puts "dont know"
+end
+
+# unless is the same is "if condition is false"
+a == 5; unless a == 6 puts "a is not 6 "
+
+TRUE / FALSE   MODIFIER form
+-----------------------------
+"false" and "nil"  objects are the only FALSE items, everything else is TRUE
+"" is true,  0 is true
+
+TRIPLE EQUALS :   "==="
+---------------------------
+Is a superset of ==
+# -- does this regular expression (/sera/) MATCH the "coursera" string
+if /sera/ === "coursera" puts "Triple Equals"
+
+
+CASE - has 2 flavors
+---------------------------
+- 2nd flavor - specify a target
+- when clause comparision ----->>>  Always uses the ===  (triple equal)
+- no "default" , fall through logic
+
+case
+ when age > 21 puts "legal"
+ when 1 == 0 puts "illogical
+ else puts "default case"
+end
+
+name = 'Fisher"
+case name
+ when /fish/i then puts "did this reg exp match the name : #{name} "
+ when 'Smith' then puts "the name var #{name} matched 'Smith'
+end
+
+FOR loop
+-----------------------------
+- For Rarely used,,, use  "each" "times" instead
+- With the for loop, the iterator variable still lives after the block is done. 
+	With the each loop, it doesn't, unless it was already defined as 
+	a local variable before the loop started.
+# for
+for i in 0..2
+  puts i
+end
+puts i
+# each
+ary = [1,2,3,4,5]
+ary.each do |i|
+   puts i
+end
+
+
+
+FUNCTIONS / METHODS
+-------------------------
+- every functions and method has at least one class it belongs to (even if not written that way)
+- functions are really methods
+
+METHODS 
+- optional () - when creating or calling
+	method_name?()	   predicate methods
+	method_name!()	   predicate methods
+
+def simple()
+  puts "this is method simple"
+end
+
+#- what is restuned : the last executed line in the method
+def multiply( a, b )
+  a * b
+  # could also use 
+  return a * b
+end
+puts multiply(3,18)
+
+def divide_by?(number)
+  # number has a method "zero"
+  return false if number.zero?
+  # else return true
+  true
+end
+puts divide_by? 0
+puts divide_by? 3
+
+DEFAULT Arguments - 
+------------------
+# default arguments
+def add_numbers(a = 2)
+  a + 7
+end
+puts add_numbers()		# use default value when missing argument
+
+
+Splat - passing a variable number of parameters
+-----------------------------------------------
+ - treat all params as a single "array" of parameters
+
+def max(p1, *unknown_numbers, p3)
+  unknown_numbers.max
+end
+put max("jeff", 2,5,2,7,19, "warvel")
+
+BLOCKS
+----------------------------------
+code  in {}  or keywords "do", "end"
+{} used for a Single Line
+Blocks also used for iteration
+
+# using do,end : note "index" is the iteration variable 
+3.times do |index|
+ if index > 0 
+   puts index 
+ end
+end
+# or via single line
+3.times { |index| puts index if if index > 0  }
+
+
+BLOCK TYPES
+---------------
+IMplicit :  "block_given",  will "yield" the call to the black
+- Just passing in a block of Code as a parameters to a method?????
+- "yield" means exeucute the block passed in
+
+def testmethod
+  return "no passed block of code" unless block_given?
+  yield
+  yield
+end
+puts testmethod()
+puts testmethod() {puts 'hello world'}
+
+# EXplicit :  More Direct
+#  pushed to method as last parameter and use a "call" parameter
+def test_explicit(&block_of_code)
+  return "no block passed" if block_of_code.nil?
+  block_of_code.call
+end
+puts test_explicit()
+puts test_explicit() { puts "New text passed to method" }
+
+
+FILES 
+---------------------------
+File.foreach( filename ) do |line|
+  puts line
+  p line.chomp    # remote newline
+  p line.split
+end
+
+# FILES reading
+filename = 'testa.txt'
+# check that file exists 
+begin
+  File.foreach( filename ) do |line|
+    puts "--------- #{line}"
+    puts line.chomp    # remote newline char from end of string
+    arr = line.split
+    puts arr
+  end
+rescue Exception => e
+  puts "error missing file : #{e.message}"
+end  
+if File.exist? filename
+  puts "file found"
+else
+  puts "file NOT found" 
+end
+puts "End of file Exist / Read"
+
+# WRITING to files	auto-closed at end of the block
+
+newfile = "jeffoutput.txt"
+File.open(newfile, "w") do |filehandle|
+  puts "Writing to #{newfile}"
+  filehandle.puts "line#1"
+  filehandle.puts "line#2"
+  filehandle.puts "line#3"
+end
+
+# ENVIRONMENT VARIABLES
+puts ENV["NWUSERNAME"] = "GAVEL"
+puts ENV["NWUSERNAME"]
+
+
+STRINGS / SYMBOLS
+----------------------------
+Single Quotes - literal as is
+Double Quotes - have special :  \n \t  and String interpolation  "value of var #{a} "
+
+String API
+- http://ruby-doc.org/core-2.2.3/String.html
+
+String METHODS   ending in "! will changed the passed value
+	except for :  String#[]
+
+
+puts "jeff \nWarvel \n"
+a=24;b=6
+puts "#{a} times #{b}  = #{ a * b } "
+
+string Methods - return a NEW string unless method ending with !, returns 
+  the SAME string
+
+%Q{long string that can span multiple lines}
+
+- STring Example
+--------------------
+my_name = " tim" 
+puts my_name.lstrip.capitalize	# => Tim 
+p my_name # => " tim" 
+my_name.lstrip! 		# (destructive) removes the leading space 
+my_name[0] = 'K' 		# replace the fist character 
+puts my_name 			# => Kim 
+
+cur_weather = %Q{It's a hot day outside 
+			     Grab your umbrellas…} 
+
+cur_weather.lines do |line| 
+  line.sub! 'hot', 'rainy'	 # substitute 'hot' with 'rainy' 
+  puts "#{line.strip}" 
+end 
+--------------------
+
+
+SYMBOLS
+----------------
+highly optimized Strings, limited methods
+Example 
+ :foo-
+it's a "Stands for Something"
+Unique and Immutable
+Can convert from STring to symbol and visa versa
+	to_s		to string
+	s_sym		to symbol
+
+ARRAYS
+---------------
+- collection of object references - 
+- not a fixed size 
+- index operator [] - really methods
+- index from 0 ... N
+- array elements can be of different types
+- %w{str1, str2} -- fo rmultiple strings into an array
+
+String API
+- http://ruby-doc.org/core-2.2.3/Array.html
+
+het_arr = [1, "two", :three] 
+arr_words  = %w{ jeff warvel was here }
+
+Example Array actions
+=============================
+arr_words  = %w{ jeff warvel was here }
+puts arr_words
+puts arr_words.first
+puts arr_words[-2,1]		# start at end, go back to and use 1
+puts arr_words[1..2]
+puts arr_words.join(';')	# convert space to semicolon
+
+# appending : .push or <<
+# Remove 	: .pop or shift
+# Set 		: [] =
+# Sample 	: randomly pull out elements
+# Sorting 	: sort!,  reverse!    
+
+# You want a stack (LIFO)? Sure 
+stack = [];
+  stack << "one"
+  stack.push ("two") 
+puts stack
+puts stack.pop # => two 
+puts "after pop #{stack}"
+
+# You need a queue (FIFO)? We have those too... 
+queue = []; queue.push "one"; queue.push "two" ; queue.push "thre" 
+puts queue.shift 		# removes the first item in
+puts queue 
+
+a = [5,3,4,2].sort!.reverse! 
+p a # => [5,4,3,2] (actually modifies the array) 
+p a.sample(2) # => 2 random elements
+a = [5,3,4,2].sort!.reverse! 
+
+a = [5,3,4,2]
+a[6] = 33 
+p a 			# will add 2 nils to auto expand array  => [5, 4, 3, 2, nil, nil, 33]
+
+# array Methods - common
+each		iterates - takes a block
+select		filter an array - takes a block
+reject		reject based on filter
+map 		modify each element in array
+
+# array Methods - common
+arr1 = [2,3,4,5,22]
+arr1.each { |value| print " next #{value} " }
+puts ""
+sel_arr = arr1.select { |num| num > 3}
+puts sel_arr
+puts map_arr = arr1.map{ |x| x-200}
+
+# RANGES - natural consequtive sequences
+---------------------------------------
+..  is all inclusive ranges 1..10  (all 11 items)
+... last is excluded  1...10  (1 to i inclusive)
+- only the start and end value are stored (more efficient)
+	1..100000  just 2 numbers stored
+- used for conditions and intervals
+
+- conver to array   "to_a"  method
+arrange = 1..6
+ arrange.max, 	arrange.include
+puts (1..10) === 5.3		# true
+
+
+# HASHES -  Indexed collections / associative array
+-----------------------------------------------------
+- Index(key) can be anything (not just an integer)
+- key / value pairs
+	- each elements is associated with a key/index
+- create with a hash bracket :  => 
+- this is not a block
+- Order that items are added is maintained. 		as of 1.9
+- can use "symbols" as a key in form "symbol:"		as of 1.9
+- if hash last arg in method (not including block)
+	the {} are optional
+
+
+hashmap = { "key1" => "value of key", "size" => 22 }
+hashmap["jeff"] = "warvel"
+hashmap.each_pair do | key, value|
+  puts "Key: #{key} = #{value}"
+end
+# look for a missing key
+puts "nil" if hashmap["missing"] == nil 
+
+# init a hash to values of zero, then count words and put sums into this Hash
+word_frequency = Hash.new(0) 
+sentence = "Chicka chicka boom boom" 
+sentence.split.each do |word| 
+  word_frequency[word.downcase] += 1 
+  puts "counting #{word}, currval = #{word_frequency[word.downcase]}"
+end 
+puts word_frequency # => {"chicka" => 2, "boom" => 2}
+
+# Named parameter "like" behavior... 
+#  method, with a default "hash" argument setting foreground, and backgroup
+def adjust_colors (props = {foreground: "red", background: "white"}) 
+  puts "Foreground: #{props[:foreground]}" if props[:foreground] 
+  puts "Background: #{props[:background]}" if props[:background] 
+end 
+adjust_colors # => foreground: red 
+              # => background: white 
+# now set forground using a symbol (2 ways)
+# 3 ways to set the value... note the ({} )are optional
+adjust_colors ({ :foreground => "green" }) # => foreground: green 
+adjust_colors background: "yella" # => background: yella 
+adjust_colors :background => "magenta" # => background: magenta
+
+# block and hash Confusion
+a_hash = { :one => "one" } 
+puts a_hash # => {:one=>"one"} 
+# If you try to print out a hash  - you get a SyntaxError 
+# RUBY GETS CONFUSED AND THINKS {} IS A BLOCK!!!
+#    puts { :one => "one" } 
+# To get around this - you can use parens around the Hash
+puts ({ :one => "one" }) 
+
+Assignment 2
+---------------
+# Grab 23 random elements between 0 and 10000
+arr = (1..10000).to_a.sample(23)
+p arr
+
+# This selects only elements that when divided by 3 have a remainder of 0 
+# using the % (modulus) operator
+p arr.select { |element| element % 3 == 0 }
+
+# Using `reject` method filter out anything less than 5000
+# and use `sort` and `reverse` methods to sort in descending order
+# Start with the line below and continue as 1 long method chain
+# p arr.select { |element| element % 3 == 0 }
+
+# Solutions
+p arr.select { |element| element % 3 == 0 }.reject {|value| value < 5000}.sort.reverse
+
+# OR by Creating a new array using !
+newarr = arr.select!{ |element| element % 3 == 0 }
+p newarr.reject{ |value| value < 5000 }
+
+
+-----------------------------------------------
+OBJECTS / CLASSES / Accessing data in Objects.
+-----------------------------------------------
+Object Oriented
+	classes = blueprints
+	create Objects (instances) out of those Classes
+	Instance Variables == the states of those objects
+
+Instance Variable
+	@name		not delcared, but spring into existanc when Object is created.
+			Instance vars are avail to all instance Method of the class
+
+Call a new Method -  "new"  causes the "initialize" method (this is the CONSTRUCTOR)
+
+
+
+
+
+puts "--------------- CLASSES --------------------------"
+class Person 
+  def initialize (name, age) # "CONSTRUCTOR" 
+    @name = name 
+    @age = age 
+  end 
+  def get_info 
+    @additional_info = "Interesting" 
+    "Name: #{@name}, age: #{@age}" 
+  end 
+end 
+
+# Create an object of Person class and assign to "person1" var
+person1 = Person.new("Joe", 14) 
+# show the "instance" variables available to to object from the Class "Person"
+p person1.instance_variables 			# [:@name, :@age] 
+# This adds an another Instance varaible @additional_info
+puts person1.get_info 					# => Name: Joe, age: 14 
+p person1.instance_variables 			# [:@name, :@age, :@additional_info] 
+
+# Access to Instance Variables - must define GETTER, SETTER methods
+#   getter, setter   methods
+class Person 
+  def initialize (name, age) # "CONSTRUCTOR" 
+    @name = name 
+    @age = age 
+  end 
+  def get_info ()
+    @additional_info = "Interesting" 
+    "Name: #{@name}, age: #{@age}" 
+  end 
+  def name()
+  	@name
+  end
+  def name=(set_name)
+  	@name = set_name
+  end
+end 
+puts "- Creating Jeff Person Object / Instance"
+person2 = Person.new("jeff", 53)
+puts person2.name
+#puts person2
+person2.name = "Warvel"
+puts "using Set then new Name instance var = #{person2.name}"
+
+# Getter, Setter - more Convenient   using   : attr_accessor  (both, attr_reader, attr_writer
+class PersonNew
+	attr_accessor :name, :age
+end
+puts "- Using attr_accessor"
+person3 = PersonNew.new
+person3.name = "jeffry"
+puts person3.name
+person3.age = "this is not a number"; puts person3.age
+
+# to control the Intance Vars in the Object
+# Use a CONSTRUCTOR
+# Using "self" - when inside method, refers to the object
+#   when outside the Instance method, self refers to the class itself
+puts "- Using self within a init method of a class"
+class PersonD
+  attr_reader :age 			# create the getter methods for age
+  attr_accessor :name 		# creates getter, setter for name
+
+  def initialize (name, ageVar) # CONSTRUCTOR 
+    @name = name 
+    self.age = ageVar 		# call the age= method . "self" is required here. (when inside the method)
+    						# if only had "age = ageVar" would only set local var, not the Instance var
+    						# self.age is actuall the Method that gets called here
+    #puts "--- setting age: #{age }"  # put calls the age reader method  (this is for debug only)
+  end 
+  def age= (new_age) 
+    @age = new_age unless ( new_age > 120  or new_age < 0 )
+  end 
+end 
+
+person1 = PersonD.new("Jeff Warvel", 53) # => 13 
+puts "Created Instance object : Name is #{person1.name}  Age is #{person1.age}" # => My age is 13 
+newage = 1
+puts "Attempting to set Age to:     #{newage}"
+person1.age = newage 			# Try to change the age 
+puts "Resulting person object.age:  #{person1.age}"
+
+
+
+
+-----------------------------------------------
+CLASS INHERITANCE
+-----------------------------------------------
+
+||   Double Pipe -   If left side true, return else return right side
+@x = @x ||  5        (if @x is true, return that else return 5)
+@x ||= 5			shorthand
+
+puts "- Using the double pipes"
+class PersonE
+  attr_reader :age 			# create the getter methods for age
+  attr_accessor :name 		# creates getter, setter for name
+
+  def initialize (name, ageVar) # CONSTRUCTOR 
+    @name = name 
+    self.age = ageVar 		# call the age= method . "self" is required here. (when inside the method)
+  end 
+  # age setter method
+  def age= (new_age) 
+  	@age ||="n/a"			# Default - use age if set, else use "n/a"
+    @age = new_age unless ( new_age > 120  or new_age < 0 )   # put bounds on the age setting
+  end 
+end 
+person1 = PersonE.new("Jeff Warvel",133)
+puts "Resulting person object.age:  #{person1.age}"
+
+
+
+-----------------------------
+CLASS METHODS AND VARIABLES
+-----------------------------
+- Are Invoked on the class (as opposed to an instance / object of the class)
+	similar to STATIC methods in java.
+- "self" Outside the method definition refers to the class object. This is a Class Method
+- Class methods to not need an "instance" / Object to be created to be Called
+- Class Variables -   not commonly used
+	tutorial : https://rubymonk.com/learning/books/4-ruby-primer-ascent/chapters/45-more-classes/lessons/113-class-variables
+	with example to store application configuration
+    Example : Example-Class-Variables.rb
+	
+- Class Methods -  3 ways to define
+-  see coursera : Lesson 3, Class Inheritance	
+
+class MathFunctions 
+  def self.double(var) 				# 1. Using self  - creates the Class Method  
+    times_called; var * 2; 
+  end 
+  class << self 					# 2. Using << self - assign a Class Variable 
+    def times_called 
+      @@times_called ||= 0; @@times_called += 1 
+    end 
+  end 
+end 
+def MathFunctions.triple(var) 		# 3. Outside of class - 
+  times_called; var * 3 
+end
+
+# No instance created for any of these
+puts MathFunctions.double 5 		# => 10 
+puts MathFunctions.triple(3) 		# => 9 
+puts MathFunctions.times_called 	# => 3 
+
+
+------------------
+INHERITANCE
+------------------
+every class implicitly interhits from Object , Object itself inherits from BaseObject
+no multiple interhitance - use "Mixins"
+
+class Dog 
+  def to_s 
+    "Dog" 
+  end 
+  def bark 
+    "barks loudly" 
+  end 
+end 
+class SmallDog < Dog 
+  def bark # Override 
+    "barks quietly" 
+  end 
+end 
+
+dog = Dog.new # (btw, new is a class method) 
+small_dog = SmallDog.new 
+puts "#{dog}1 #{dog.bark}" # => Dog1 barks loudly 
+puts "#{small_dog}2 #{small_dog.bark}" # => Dog2 barks quietly 
+
+
+
+------------------
+MODULES  is a Container
+------------------
+- Container for Classes , methods,  and contstants
+- Cannot create an "Instance of a Container"
+- Used for a Namespace (prevent name collision) or a Mix in
+- Using the :: to indicate which MOdule to use
+
+puts "--------------- MODULES AND MIXIN  --------------------------"
+
+# thie example has to method "Match", but they belong to diff modules
+module Sports 
+  class Match
+    attr_accessor :score 
+  end 
+end 
+
+module Patterns 
+  class Match 
+    attr_accessor :complete 
+  end 
+end 
+
+match1 = Sports::Match.new
+match1.score = 45; puts match1.score # => 45
+
+match2 = Patterns::Match.new
+match2.complete = true; puts match2.complete # => true
+
+------------------
+- MIXIN example
+---------------------
+Mixin : 
+	share code between multiple classes
+	(similar to java interfaces) 
+	"include" a module within a c lass
+	
+Can also include Modules from the Ruby library
+
+module SayMyName 
+  attr_accessor :name 
+  def print_name 
+    puts "Name: #{@name}" 
+  end 
+end 
+
+class Person 
+  include SayMyName 
+end 
+class Company 
+  include SayMyName 
+end 
+
+person = Person.new 
+person.name = "Joe" 
+person.print_name # => Name: Joe 
+company = Company.new 
+company.name = "Google & Microsoft LLC" 
+company.print_name # => Name: Google & Microsoft LLC 
+
+
+Including ruby modules  - including the "Enumerable" module
+---------------------------
+See the team.rb, player.rb, picks.rb
+
+#team.rb
+class Team 
+  include Enumerable # LOTS of functionality
+
+  attr_accessor :name, :players 
+  def initialize (name) 			# CONSTRUCTOR
+    @name = name 	
+    @players = [] 					# init the array of players
+  end 
+  def add_players (*players) 		# splat to add list of playser to the instance array var 
+    @players += players
+  end 
+  def to_s 
+    "#{@name} team: #{@players.join(", ")}" 	# print out details
+  end 
+  def each 									# create the each method
+    @players.each { |player| yield player }		# yield will return the "player"
+  end 
+end 
+
+#picks.rb
+require_relative 'player'			include another ruby file : include the player.rb   file
+
+
+---------------------------
+SCOPE
+----------------------------
+- Methods and classes 'start' a new scope
+- Contstants (Uppername) maintain scope
+- Blocks inherit out scope, but could be overridden (inside block)
+- methods & classes begin new scope variables,  outer scope not carried to inner scope
+- use local_variables  method to see which variables are in scope
+
+puts "--------------- SCOPE --------------------------"
+puts "- Using the double pipes"
+v1 = "outside"
+class MyClass 
+  def my_method
+  	# p v1 EXCEPTION THROWN - no such variable exists
+	p self			# to look at class itself
+    v1 = "inside"
+    p v1
+    p local_variables 
+	
+  end 
+end 
+
+p v1 				# => outside
+obj = MyClass.new 
+obj.my_method 		# => inside 
+					# => [:v1] 
+p local_variables 	# => [:v1, :obj]
+p self 				# => main
+
+
+------------------------------
+CONSTANTS 
+------------------------------
+- starts with Upper case
+- scope rules are different 
+	: Inner Scope constants can see and override (but not change)  outer scope constants
+	
+puts "- Using Constants - start with Upper"	
+module MyModule 
+  MyConstant = 'Outer Constant' 
+  class MyClass 
+    puts MyConstant # => Outer Constant 
+    MyConstant = 'Inner Constant' 
+    puts MyConstant # => Inner Constant 
+  end
+  puts MyConstant # => Outer Constant 
+end
+	
+
+-------------------------
+SCOPE OF BLOCKS
+-------------------------
+- blocks inherit outer scope and is a "closure"	
+- var created inside block only avail to the block (inner scope)
+- Block parameters are always local to the block (inner scope)
+- can explicit declare "block local" vars after a ; in block parameter list
+
+puts "- Block scope " 
+class BankAccount 
+  attr_accessor :id, :amount 
+  def initialize(id, amount) 
+    @id = id 
+    @amount = amount 
+  end 
+end 
+
+acct1 = BankAccount.new(123, 200) 
+acct2 = BankAccount.new(321, 100) 
+acct3 = BankAccount.new(421, -100) 
+accts = [acct1, acct2, acct3] 
+
+total_sum = 0 						# avail outside and inside block scope
+accts.each_with_index do |eachAcct, index ; newvar |		    # set newvar to have scope only in the block
+  total_sum += eachAcct.amount 		# total_sum gets inherited to inside this scope
+  newvar = 1
+  puts " index: #{index} - newvar #{newvar} "
+end 
+puts newvar		# => is not in this scope, only local to block
+puts total_sum # => 200
+
+
+-------------------------
+ACCESS CONTROL
+-------------------------
+- Exposing how much of your class - Encapsulation
+- 3 levels of Access : 
+	Methods are : public, protected, private
+	Default : all ruby Methods are public
+- Specify the "access" in 2 ways
+	a. specify : public, protected, private 
+		everying until next "access control keyword" will be of the above set level
+	b. specify a list of methods after add an access control - all following behave as the first.
+		??? 
+- Public
+- Protected : only invoked by objecs of the Defining class or it's sub-class(s)
+- Private : methods are not callable from outside or inside the class 
+	with an  "explicit receiver"
+	Exception is the "setter" method using self.xxx = 
+		
+puts "--------------- ACCESS CONTROL --------------------------"		
+puts "- 'Access' to methods are : public (default), protected or private"
+class MyAlgorithm
+  private
+    def test1			# first method is private
+      "Private"
+    end
+	def priv1
+		"also private"
+	end
+	# any additional methods are private , until hit another access control keyword
+  protected
+    def test2			# method test2 is protected
+      "Protected"
+    end
+  public
+    def public_again
+      "Public"
+    end
+end
+
+# option 2, define methods, then after that set the Acess Control :methodname
+class Another
+  def test1
+    "Private, as declated later on"
+  end
+  private :test1
+end		
+
+# Understanding Private access
+puts "- Understanding Private access"
+class Person
+  def initialize(age)
+  	self.age = age # LEGAL - EXCEPTION  -  the exception is the "Setter" for a private method 
+					# and can only do this using "self" in the initialize method for this class
+  	puts my_age
+  	# puts self.my_age # ILLEGAL  - even Contructor cannot access the private "my_age" method
+  	                   # CANNOT USE self or any other receiver
+  end
+
+  private 
+    def my_age
+    	@age
+    end
+    def age=(age)
+      @age = age		# Exception to private is the "setter" for age
+    end
+end
+Person.new(25) 			# => 25
+
+
+
+-------------------------
+UNIT TESTS
+-------------------------
+- WHY => Ruby : dynamic / interpreted. Editor doesn't always pick up syntax. Also serves as documentation
+- Write code to do Unit Tests :
+- ships with   Test::Unit
+	officially called "MiniTest",  it's a "drop-in" replacment 
+
+
+Test::Unit	member of XUnit family - A module for unit testing in ruby
+	Extend your class with this lib to run unit test	
+	test_xx   can then be used in your clas
+	If a single method fails, then Test CONTINUE further unit test in your class
+
+Unit test Class 
+- Can Prep for expected behavior for a Class with these methods
+	setup() ,    teardown()    
+
+
+Running using Test::Unit
+ - 2 files, the main class and the a "test" class
+	Test class has a reference to the class we are testing
+		ruby calculator_test_jeff.rb
+	see : d:\sandbox\ruby\coursera_test.rb
+		require 'test/unit'
+		require_relative 'calculator'
+		class CalculatorTest < Test::Unit::TestCase
+	running
+		ruby TestClassName.rb
+		
+	Error
+	D:/APPS/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/test/unit.rb:676:in
+	 `<class:Runner>': undefined method `_run_suite' for class `Test::Unit::Runner' (NameError)
+
+	Fix : 
+	need to update the Ruby package: 	  "test-unit"	current ver : test-unit 2.1.5.0
+		https://rubygems.org/gems/test-unit/versions/3.1.7
+		https://github.com/test-unit/test-unit	
+	gem install test-unit
+		test-unit (3.1.7, 2.1.5.0)
+
+	another approch : Useing "minitest"
+	- Ruby 1.9.x bundles minitest not Test::Unit
+	- Change these 2 items in your unit test class 
+		Change require 'test/unit' to
+		   require 'minitest/autorun'
+		Change class TestWordsFromString < Test::Unit::TestCase to 
+		   class TestWordsFromString < Minitest::Test
+		   
+Rspec		a unit test add-on for Ruby
+-----------------------------------------
+commands
+	rspec --init 		setup a unit test framework / Example group in curr directory
+						creates the "spec" directory
+methods
+	describe()			set of related tasks (an example group ) - top level
+						takes string or Class as arg.
+						All "specs" go in "describe" method block
+	before(), after() 	same as setup(), teardown
+						can pass 	:each		:all		to config whether block to run before or after each test.
+						could be used for db testing, only run db connection once.
+						
+	it()				passed optional string to 
+	
+Example
+--------------	
+

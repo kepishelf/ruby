@@ -1,0 +1,5 @@
+this is the test file "test.txt" 
+Stuff about line one
+other line stuff about line 3 with the word line and word word
+all good things must come to and end
+end of file but not of the begin of the file
