@@ -1,1 +1,5 @@
+This is the path from speedy 
 PATH=D:\apps\RailsInstaller\Git\cmd;D:\apps\RailsInstaller\Ruby2.1.0\bin;D:\apps\RailsInstaller\Ruby2.1.0\lib\ruby\gems\1.9.1\bin;D:\apps\RailsInstaller\DevKit\bin;C:\Program Files\Common Files\Microsoft Shared\Windows Live;C:\tools\Java\jre7\bin;C:\tools\Groovy\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;c:\util;c:\revwin\shared;C:\Program Files\ATI Technologies\ATI.ACE\Core-Static;C:\tools\Java\jre7\bin;C:\apps\Git\cmd;C:\Program Files\Common Files\Acronis\SnapAPI\;C:\Program Files\Windows Live\Shared;C:\Program Files\QuickTime\QTSystem\;C:\Program Files\SSH Communications Security\SSH Secure Shell
+
+
+
