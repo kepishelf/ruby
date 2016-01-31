@@ -201,7 +201,7 @@ class Solution
     filter_arr.each do |obj| 
       highest_count_words_across_lines << obj
 #      if (@@dbg == true)
-        puts " DBG: Word=#{obj.highest_wf_words}    Count=#{obj.highest_wf_count}     Line=#{obj.line_number}" 
+        puts "== DBG: Word=#{obj.highest_wf_words}    Count=#{obj.highest_wf_count}     Line=#{obj.line_number}" 
 #      end  
     end
   
@@ -272,4 +272,4 @@ sol.print_highest_word_frequency_across_lines()
 
 
 sol.highest_count_words_across_lines.each { |obj| puts obj.highest_wf_words}
-puts sol.highest_count_words_across_lines.map(&:highest_wf_words).flatten
+# puts sol.highest_count_words_across_lines.map(&:highest_wf_words).flatten
