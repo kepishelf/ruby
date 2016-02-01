@@ -205,9 +205,9 @@ class Solution
 
     filter_arr.each do |obj| 
       highest_count_words_across_lines << obj
-#      if (@@dbg == true)
+      if (@@dbg == true)
         puts "== filter DBG: Words=#{obj.highest_wf_words}    Count=#{obj.highest_wf_count}   Line=#{obj.line_number}" 
-#      end  
+      end  
     end
   
 puts "-----debugging highcnt = #{@highest_count_across_lines}"

@@ -1,6 +1,6 @@
 # main class to test assignemnt
 
-require_relative "../module2_assignment"
+require_relative "module2_assignment"
 
 
 
