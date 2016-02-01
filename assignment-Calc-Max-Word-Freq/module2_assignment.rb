@@ -33,6 +33,7 @@ class LineAnalyzer
       puts " DBG: initialize : #{@content}"  
     end
     @highest_wf_words = []
+    @highest_wf_count = 0 
     # Calculate the word and counts for "in_line" by calling this method 
     #  which is intenral to class - this will set the Instance Vars that hold the
     #  words and counts
@@ -175,7 +176,7 @@ class Solution
   #  and stores this result in the highest_count_across_lines attribute.
   def calculate_line_with_highest_frequency()
     #
-    @highest_count_across_lines = 0
+    #@highest_count_across_lines = 0
 
     # sort the list of "analyzers" by the highest word count - sort in reverse so we have the word and it's count
     # in the first element of analyzers array
@@ -183,17 +184,19 @@ class Solution
     analyzers.sort! {|x, y| y.highest_wf_count  <=>  x.highest_wf_count  }
 
     # 2 alternate methods to sort this array into another Instance of array : "a"
-    a = analyzers.sort_by {|obj| obj.highest_wf_count}
+    a = @analyzers.sort_by {|obj| obj.highest_wf_count}
     a.sort! {|x, y| y.highest_wf_count  <=> x.highest_wf_count  }
+
     # print results of "a" sorted
-    #  a.each do |obj| ; print " #{obj.highest_wf_count} , #{obj.highest_wf_words} " ; end; puts ""
-      
+    # a.each do |obj| ; print "--anly:  #{obj.highest_wf_count} , #{obj.highest_wf_words} " ; end; puts ""
+
+    # save highest word count of all lines
+    @highest_count_across_lines = analyzers[0].highest_wf_count
+
     if (@@dbg == true)
       puts " DBG: Result highest Count,Word : #{analyzers[0].highest_wf_count} , #{analyzers[0].highest_wf_words} "
     end
 
-    # save highest word count of all lines
-    @highest_count_across_lines = analyzers[0].highest_wf_count
 
     #* identifies the LineAnalyzer objects in the analyzers array that have highest_wf_count equal to highest_count_across_lines 
     #  attribute value determined previously and stores them in highest_count_words_across_lines.
@@ -231,6 +234,8 @@ end
 
 
 
+
+
 #------------------------------------------------
 puts "--- Test Outside Class word counting"
   #res = LineAnalyzer.new("jeff warvel was here mr. warvel",2)
@@ -263,9 +268,12 @@ sol.analyze_file()
 # sol.analyzers.each_with_index { |value, i| puts "#{i}- #{value.highest_wf_count}   #{value.highest_wf_words}" }
 
 # call method to find highest word count
-resa = sol.calculate_line_with_highest_frequency
-puts "Highest word Count : #{sol.highest_count_across_lines}"
+sol.calculate_line_with_highest_frequency
+puts "Highest Count for all lines: #{sol.highest_count_across_lines}"
 
+puts "highest_count_words_across_lines"
+#puts sol.highest_count_words_across_lines[0].highest_wf_words
+puts sol.highest_count_words_across_lines.map(&:highest_wf_words)
 
 puts "!!!!!!!!!!!!  FINAL RESULTS !!!!!!!!!!!!!!!!"
 puts "- Sorted Array of LineAnalyzer objects - "
