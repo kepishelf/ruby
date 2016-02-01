@@ -181,7 +181,7 @@ class Solution
     # sort the list of "analyzers" by the highest word count - sort in reverse so we have the word and it's count
     # in the first element of analyzers array
     #  we sort this instance / object by using the "!"
-    analyzers.sort! {|x, y| y.highest_wf_count  <=>  x.highest_wf_count  }
+    @analyzers.sort! {|x, y| y.highest_wf_count  <=>  x.highest_wf_count  }
 
     # 2 alternate methods to sort this array into another Instance of array : "a"
     a = @analyzers.sort_by {|obj| obj.highest_wf_count}
@@ -191,10 +191,10 @@ class Solution
     # a.each do |obj| ; print "--anly:  #{obj.highest_wf_count} , #{obj.highest_wf_words} " ; end; puts ""
 
     # save highest word count of all lines
-    @highest_count_across_lines = analyzers[0].highest_wf_count
+    @highest_count_across_lines = @analyzers[0].highest_wf_count
 
     if (@@dbg == true)
-      puts " DBG: Result highest Count,Word : #{analyzers[0].highest_wf_count} , #{analyzers[0].highest_wf_words} "
+      puts " DBG: Result highest Count,Word : #{@analyzers[0].highest_wf_count} , #{@analyzers[0].highest_wf_words} "
     end
 
 
