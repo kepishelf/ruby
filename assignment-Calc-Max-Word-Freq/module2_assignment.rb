@@ -36,7 +36,7 @@ class LineAnalyzer
     # Calculate the word and counts for "in_line" by calling this method 
     #  which is intenral to class - this will set the Instance Vars that hold the
     #  words and counts
-    self.calculate_word_frequency()
+    calculate_word_frequency()
   end
 
   #Implement the calculate_word_frequency() method to:
@@ -150,6 +150,8 @@ class Solution
         #  this is Now done in initialize() method       - per assignemtn requiremetns
         # resa.calculate_word_frequency
 
+#puts "zz : #{analyzers[-1].highest_wf_words}  #{analyzers[-1].highest_wf_count} "
+
         if (@@dbg == true)
           puts " DBG: LINE: #{line}"
           puts "                                Loadfile: Line:#{line_number}  Count => Word: #{resa.highest_wf_words}  Max: #{resa.highest_wf_count}"
@@ -201,11 +203,12 @@ class Solution
     filter_arr.each do |obj| 
       highest_count_words_across_lines << obj
 #      if (@@dbg == true)
-        puts "== DBG: Word=#{obj.highest_wf_words}    Count=#{obj.highest_wf_count}     Line=#{obj.line_number}" 
+        puts "== filter DBG: Words=#{obj.highest_wf_words}    Count=#{obj.highest_wf_count}   Line=#{obj.line_number}" 
 #      end  
     end
   
 puts "-----debugging highcnt = #{@highest_count_across_lines}"
+
     # This method returns the hight word count across all lines
     return @highest_count_across_lines
   end
@@ -259,17 +262,14 @@ sol.analyze_file()
 #-  Ex:  arr1.each { |value| print " next #{value} " }
 # sol.analyzers.each_with_index { |value, i| puts "#{i}- #{value.highest_wf_count}   #{value.highest_wf_words}" }
 
-print "-- A checking highest cnt : "; puts sol.highest_count_across_lines
-
 # call method to find highest word count
 resa = sol.calculate_line_with_highest_frequency
-# puts "Highest word Count : #{sol.highest_count_across_lines}"
-print "-- B checking highest cnt : "; puts resa
+puts "Highest word Count : #{sol.highest_count_across_lines}"
+
 
 puts "!!!!!!!!!!!!  FINAL RESULTS !!!!!!!!!!!!!!!!"
 puts "- Sorted Array of LineAnalyzer objects - "
 sol.print_highest_word_frequency_across_lines()
 
-
-sol.highest_count_words_across_lines.each { |obj| puts obj.highest_wf_words}
+#sol.highest_count_words_across_lines.each { |obj| puts obj.highest_wf_words}
 # puts sol.highest_count_words_across_lines.map(&:highest_wf_words).flatten
