@@ -35,6 +35,9 @@ class Home
     # method to add members to a home and keep a count of members.
 	  @members << in_person
 	  @person_cnt += 1
+    if ( @person_cnt >= 2) 
+      self.set_output
+    end
   end
 
   def set_output
